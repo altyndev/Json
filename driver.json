@@ -1,0 +1,16 @@
+{
+  "mapDriver": {
+    "1": {
+      "id": 1,
+      "name": "Ulan   "
+    },
+    "2": {
+      "id": 2,
+      "name": "Nurgazy"
+    },
+    "3": {
+      "id": 3,
+      "name": "Almaz  "
+    }
+  }
+}

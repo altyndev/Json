@@ -1,0 +1,19 @@
+{
+  "mapTruck": {
+    "1": {
+      "id": 1,
+      "name": "Volvo  ",
+      "state": "BASE"
+    },
+    "2": {
+      "id": 2,
+      "name": "Belarus",
+      "state": "BASE"
+    },
+    "3": {
+      "id": 3,
+      "name": "Russia ",
+      "state": "BASE"
+    }
+  }
+}
