@@ -3,6 +3,10 @@
     "1": {
       "id": 1,
       "name": "Volvo  ",
+      "driver": {
+        "id": 2,
+        "name": "Nurgazy"
+      },
       "state": "BASE"
     },
     "2": {

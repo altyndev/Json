@@ -5,6 +5,7 @@ import com.company.model.Driver;
 import com.company.model.Truck;
 import com.company.model.daoModel.DaoDriver;
 import com.company.model.daoModel.DaoTruct;
+import com.company.service.Service;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -24,48 +25,48 @@ public class Main {
     public static final Gson GSON = GSON_BUILDER.setPrettyPrinting().create();
     public static final Path PATH = Paths.get("./truck.json");
     public static final Path PATH1 = Paths.get("./driver.json");
-
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Driver driver = new Driver(1, "Ulan   ");
-        Truck truck = new Truck(1, "Volvo  ",driver, State.BASE);
-        Truck truck1 = new Truck(2, "Belarus",null, State.BASE);
-        Truck truck2 = new Truck(3, "Russia ",null, State.BASE);
+
+        Truck truck1 = new Truck(1, "Volvo  ",null, State.BASE);
+        Truck truck2 = new Truck(2, "Belarus", null, State.BASE);
+        Truck truck3 = new Truck(3, "Russia ", null, State.BASE);
+
+        Driver driver1 = new Driver(1, "Ulan   ");
+        Driver driver2 = new Driver(2, "Nurgazy");
+        Driver driver3 = new Driver(3, "Almaz  ");
 
         DaoTruct daoTruct = new DaoTruct();
-//        daoTruct.setMapTruck((Map<Integer, Truck>) truck);
-//        daoTruct.setMapTruck((Map<Integer, Truck>) truck1);
-//        daoTruct.setMapTruck((Map<Integer, Truck>) truck2);
-        daoTruct.put(truck);
         daoTruct.put(truck1);
         daoTruct.put(truck2);
-        String json = GSON.toJson(daoTruct);
-        write(json);
-
-        Driver driver1 = new Driver(2, "Nurgazy");
-        Driver driver2 = new Driver(3, "Almaz  ");
-
-//        driver.setTruck(truck);
-//        driver1.setTruck(truck1);
-//        driver2.setTruck(truck2);
+        daoTruct.put(truck3);
 
         DaoDriver daoDriver = new DaoDriver();
-        daoDriver.put(driver);
         daoDriver.put(driver1);
         daoDriver.put(driver2);
+        daoDriver.put(driver3);
 
-
-
-        String json1 = GSON.toJson(daoDriver);
-        writeDrivers(json1);
-
-        daoTruct.putDriver( 1, driver);
-        daoTruct.putDriver( 3, driver1);
-        daoTruct.putDriver( 2, driver2);
+        Service service = new Service(daoDriver, daoTruct);
         daoTruct.show();
-        System.out.println();
-        daoDriver.show();
+        do {
+            System.out.println();
+            System.out.print("ENTER ID OF TRUCK TO SEE ALL INFORMATION ABOUT IT: ");
+            int truck = scanner.nextInt();
+            daoTruct.showId(truck);
+            daoDriver.show();
+            int driver = scanner.nextInt();
+            service.poisk(truck, driver);
 
+
+            String json = GSON.toJson(daoTruct);
+            write(json);
+
+            String json1 = GSON.toJson(daoDriver);
+            writeDrivers(json1);
+            service.showService();
+        }while (true);
     }
+
     public static void write(String o) {
         try {
             Path path = Paths.get(String.valueOf(PATH));

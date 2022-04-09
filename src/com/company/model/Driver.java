@@ -1,5 +1,7 @@
 package com.company.model;
 
+import java.util.Objects;
+
 public class Driver {
     private int id;
     private String name;
@@ -7,7 +9,7 @@ public class Driver {
 
     public Driver(int id, String name) {
         this.id = id;
-        this.name = name;
+        Objects.requireNonNull(this.name = name);
     }
 
     public int getId() {
