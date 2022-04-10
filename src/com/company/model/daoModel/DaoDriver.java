@@ -28,7 +28,7 @@ public class DaoDriver {
     public Map<Integer, Driver> poiskId(int id) {
         Map<Integer, Driver> map = new HashMap<>();
         for (Map.Entry<Integer, Driver> entry : mapDriver.entrySet()) {
-            if (entry.getKey()==id){
+            if (entry.getKey() == id) {
                 map.put(entry.getKey(), entry.getValue());
             }
         }
@@ -39,9 +39,18 @@ public class DaoDriver {
         System.out.println("""
                  #     | Driver         | Bus      
                 -------+----------------+--------------""");
-        mapDriver.forEach((key, values) -> System.out.printf("""
-                        -%d-    | %s        | %s           """,
-                key, values.getName(), values.getTruck() + "\n"));
-
+        for (Map.Entry<Integer, Driver> entry : mapDriver.entrySet()) {
+            Integer key = entry.getKey();
+            Driver value = entry.getValue();
+            try {
+                System.out.printf("""
+                                -%d-    | %s        | %s           """,
+                        key, value.getName(), value.getTruck().getName() + "\n");
+            } catch (NullPointerException e) {
+                System.out.printf("""
+                                -%d-    | %s        | %s           """,
+                        key, value.getName(), " " + "\n");
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.company.model.daoModel;
 
+import com.company.enums.State;
 import com.company.model.Driver;
 import com.company.model.Truck;
 
@@ -28,28 +29,55 @@ public class DaoTruct {
     public Map<Integer, Truck> poiskId(int id) {
         Map<Integer, Truck> map = new HashMap<>();
         for (Map.Entry<Integer, Truck> entry : mapTruck.entrySet()) {
-            if (entry.getKey()==id){
-                map.put(entry.getKey(), entry.getValue());
+            if (entry.getValue().getState() == State.BASE) {
+                if (entry.getKey() == id) {
+                    map.put(entry.getKey(), entry.getValue());
+                }
             }
         }
         return map;
+    }
+
+    public void route(int id) {
+        for (Map.Entry<Integer, Truck> t : mapTruck.entrySet()) {
+            if (t.getKey() == id) {
+                if (t.getValue().getState().equals(State.ROUTE)) {
+                    System.err.println("The truck is on its way");
+                } else {
+                    if (t.getValue().getDriver() == null) {
+                        System.err.println("NO DRIVER");
+                    } else {
+                        t.getValue().setState(State.ROUTE);
+                        System.out.println("=================================================");
+                        System.out.println("You have successfully entered the route");
+                    }
+                }
+            }
+        }
+    }
+
+    public void repairing(int id) {
+        mapTruck.entrySet().stream().filter(x -> x.getKey() == id).forEach(x -> x.getValue().setState(State.REPAIR));
+        System.out.println("=================================================");
+        System.out.println("you have successfully sent for repair");
     }
 
     public void showId(int id) {
         for (Map.Entry<Integer, Truck> t : mapTruck.entrySet()) {
             if (id == t.getKey()) {
                 try {
-                    System.out.println(" Id         : " + t.getValue().getId());
-                    System.out.println(" Truck      : " + t.getValue().getName());
-                    System.out.println(" Driver     : " + t.getValue().getDriver().getName());
-                    System.out.println(" Truck State: " + t.getValue().getState());
+                    System.out.println(" Id          : " + t.getValue().getId());
+                    System.out.println(" Truck       : " + t.getValue().getName());
+                    System.out.println(" Driver      : " + t.getValue().getDriver().getName());
+                    System.out.println(" Truck State : " + t.getValue().getState());
                 } catch (NullPointerException e) {
-                    System.out.println("Driver      : " + " ");
-                    System.out.println("Truck State : " + t.getValue().getState()+"\n");
+                    System.out.println(" Driver      : " + " ");
+                    System.out.println(" Truck State : " + t.getValue().getState() + "\n");
                 }
             }
         }
     }
+
     public void show() {
         System.out.println("""
                  #     | Bus            | Driver   | State

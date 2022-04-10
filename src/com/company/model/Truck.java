@@ -1,10 +1,6 @@
 package com.company.model;
 
 import com.company.enums.State;
-import com.company.model.daoModel.DaoDriver;
-
-import java.util.Objects;
-import java.util.Optional;
 
 public class Truck {
     private int id;
@@ -52,4 +48,7 @@ public class Truck {
         this.state = state;
     }
 
+    public boolean hasDriver() {
+        return this.driver != null;
+    }
 }

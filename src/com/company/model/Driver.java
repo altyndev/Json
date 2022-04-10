@@ -1,15 +1,14 @@
 package com.company.model;
 
-import java.util.Objects;
-
 public class Driver {
     private int id;
     private String name;
     private Truck truck;
 
-    public Driver(int id, String name) {
+    public Driver(int id, String name, Truck truck) {
         this.id = id;
-        Objects.requireNonNull(this.name = name);
+        this.name = name;
+        this.truck = truck;
     }
 
     public int getId() {
@@ -34,6 +33,11 @@ public class Driver {
 
     public void setTruck(Truck truck) {
         this.truck = truck;
+    }
+
+
+    public boolean hasTruck() {
+        return this.truck != null;
     }
 
     @Override

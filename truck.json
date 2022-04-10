@@ -1,23 +1,21 @@
 {
-  "mapTruck": {
-    "1": {
+  "1": {
+    "id": 1,
+    "name": "Volvo  ",
+    "driver": {
       "id": 1,
-      "name": "Volvo  ",
-      "driver": {
-        "id": 2,
-        "name": "Nurgazy"
-      },
-      "state": "BASE"
+      "name": "Ulan   "
     },
-    "2": {
-      "id": 2,
-      "name": "Belarus",
-      "state": "BASE"
-    },
-    "3": {
-      "id": 3,
-      "name": "Russia ",
-      "state": "BASE"
-    }
+    "state": "BASE"
+  },
+  "2": {
+    "id": 2,
+    "name": "Belarus",
+    "state": "BASE"
+  },
+  "3": {
+    "id": 3,
+    "name": "Russia ",
+    "state": "BASE"
   }
 }

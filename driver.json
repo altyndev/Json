@@ -1,16 +1,19 @@
 {
-  "mapDriver": {
-    "1": {
+  "1": {
+    "id": 1,
+    "name": "Ulan   ",
+    "Truck": {
       "id": 1,
-      "name": "Ulan   "
-    },
-    "2": {
-      "id": 2,
-      "name": "Nurgazy"
-    },
-    "3": {
-      "id": 3,
-      "name": "Almaz  "
+      "name": "Volvo  ",
+      "state": "BASE"
     }
+  },
+  "2": {
+    "id": 2,
+    "name": "Nurgazy"
+  },
+  "3": {
+    "id": 3,
+    "name": "Almaz  "
   }
 }
