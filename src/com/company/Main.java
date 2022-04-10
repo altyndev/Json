@@ -63,11 +63,13 @@ public class Main {
                 System.out.println("Press 1 to change Driver");
                 System.out.println("Press 2 to send to the Route");
                 System.out.println("Press 3 ot send to the Repairing");
+                System.out.println("Press 3 ot send to the Base");
                 int state = scanner.nextInt();
                 switch (state) {
                     case 1 -> service.changeDriver(truck);
                     case 2 -> daoTruct.route(truck);
                     case 3 -> daoTruct.repairing(truck);
+                    case 4 -> daoTruct.base(truck);
                 }
             } catch (InvalidChangeAttemptException e) {
                 System.err.println("WE COULD NOT FIND THIS NUMBER");

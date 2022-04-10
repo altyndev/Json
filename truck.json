@@ -3,10 +3,10 @@
     "id": 1,
     "name": "Volvo  ",
     "driver": {
-      "id": 1,
-      "name": "Ulan   "
+      "id": 2,
+      "name": "Nurgazy"
     },
-    "state": "BASE"
+    "state": "REPAIR"
   },
   "2": {
     "id": 2,
@@ -16,6 +16,15 @@
   "3": {
     "id": 3,
     "name": "Russia ",
+    "state": "BASE"
+  }
+}   "id": 3,
+    "name": "Russia ",
+    "state": "BASE"
+  }
+}": 1,
+      "name": "Ulan   "
+    },
     "state": "BASE"
   }
 }

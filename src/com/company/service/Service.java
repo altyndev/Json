@@ -26,7 +26,7 @@ public class Service {
                 daoDriver.show();
                 System.out.print("TO CHANGE DRIVER SELECT DRIVER: ");
                 int driver = scanner.nextInt();
-                poiskTruck(truck, driver);
+                changeDriver1(truck, driver);
                 break;
             } else if (e.getValue().getState().equals(State.ROUTE)) {
                 System.err.printf("YOU CAN'T CHANGE DRIVER, BECAUSE THE TRUCK[%S] ON THE ROUTE\n",
@@ -40,17 +40,20 @@ public class Service {
         }
     }
 
-    public void poiskTruck(int idTruck, int idDriver) {
-        Map<Integer, Truck> driverSetTruck = daoTruct.poiskId(idTruck);
-        Map<Integer, Driver> truckSetDriver = daoDriver.poiskId(idDriver);
-        for (Map.Entry<Integer, Truck> e : driverSetTruck.entrySet()) {
-            daoDriver.putTruck(idDriver, e.getValue());
-            for (Map.Entry<Integer, Driver> s : truckSetDriver.entrySet()) {
-                daoTruct.putDriver(idTruck, s.getValue());
-                System.out.println("=================================================");
-                System.out.println("Driver changed successfully");
-                System.out.println();
-            }
+    public void changeDriver1(int idTruck, int idDriver) {
+        Truck truck = daoTruct.poiskId(idTruck);
+        Driver driver = daoDriver.poiskId(idDriver);
+        try {
+        if (driver.isFree()) {
+            truck.getDriver().setTruck(null);
+            truck.setDriver(driver);
+            driver.setTruck(truck);
+        }else {
+            System.err.println("Driver is not free!!");
+        }
+    }catch (NullPointerException ex) {
+            truck.setDriver(driver);
+            driver.setTruck(truck);
         }
     }
 

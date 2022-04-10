@@ -1,5 +1,7 @@
 package com.company.model;
 
+import java.util.Objects;
+
 public class Driver {
     private int id;
     private String name;
@@ -41,12 +43,19 @@ public class Driver {
     }
 
     @Override
-    public String
-    toString() {
-        return "Driver{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", truck=" + truck +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return id == driver.id && Objects.equals(name, driver.name) && Objects.equals(truck, driver.truck);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, truck);
+    }
+
+    public boolean isFree() {
+        return truck == null;
     }
 }

@@ -2,6 +2,8 @@ package com.company.model;
 
 import com.company.enums.State;
 
+import java.util.Objects;
+
 public class Truck {
     private int id;
     private String name;
@@ -46,6 +48,19 @@ public class Truck {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return id == truck.id && Objects.equals(name, truck.name) && Objects.equals(driver, truck.driver) && state == truck.state;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, driver, state);
     }
 
     public boolean hasDriver() {

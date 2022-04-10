@@ -23,19 +23,19 @@ public class DaoTruct {
     }
 
     public void putDriver(int id, Driver driver) {
-        mapTruck.entrySet().stream().filter(x -> x.getKey() == id).forEach(x -> x.getValue().setDriver(driver));
-    }
-
-    public Map<Integer, Truck> poiskId(int id) {
-        Map<Integer, Truck> map = new HashMap<>();
-        for (Map.Entry<Integer, Truck> entry : mapTruck.entrySet()) {
-            if (entry.getValue().getState() == State.BASE) {
-                if (entry.getKey() == id) {
-                    map.put(entry.getKey(), entry.getValue());
+        if (driver.isFree()) {
+            for (Map.Entry<Integer, Truck> d : mapTruck.entrySet()) {
+                if (d.getKey() == id) {
+                    d.getValue().setDriver(driver);
                 }
             }
+        } else {
+            System.out.println("Driver is not free!!");
         }
-        return map;
+    }
+
+    public Truck poiskId(int id) {
+        return mapTruck.get(id);
     }
 
     public void route(int id) {
@@ -60,6 +60,12 @@ public class DaoTruct {
         mapTruck.entrySet().stream().filter(x -> x.getKey() == id).forEach(x -> x.getValue().setState(State.REPAIR));
         System.out.println("=================================================");
         System.out.println("you have successfully sent for repair");
+    }
+
+    public void base(int id) {
+        mapTruck.entrySet().stream().filter(x -> x.getKey() == id).forEach(x -> x.getValue().setState(State.BASE));
+        System.out.println("=================================================");
+        System.out.println("you have successfully sent for base");
     }
 
     public void showId(int id) {

@@ -25,14 +25,8 @@ public class DaoDriver {
         mapDriver.entrySet().stream().filter(x -> x.getKey() == id).forEach(x -> x.getValue().setTruck(truck));
     }
 
-    public Map<Integer, Driver> poiskId(int id) {
-        Map<Integer, Driver> map = new HashMap<>();
-        for (Map.Entry<Integer, Driver> entry : mapDriver.entrySet()) {
-            if (entry.getKey() == id) {
-                map.put(entry.getKey(), entry.getValue());
-            }
-        }
-        return map;
+    public Driver poiskId(int id) {
+       return mapDriver.get(id);
     }
 
     public void show() {
